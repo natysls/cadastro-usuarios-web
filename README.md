@@ -1,12 +1,45 @@
-# React + Vite
+# Cadastro de Usuários Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é uma aplicação web para cadastro e gerenciamento de usuários, usando ReactJS com JavaScript e consome a api de usuários feita em Node.js.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Cadastro de novos usuários
+- Listagem de usuários cadastrados
+- Remoção de usuários
 
-## Expanding the ESLint configuration
+## Tecnologias Utilizadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **ReactJS** – Biblioteca para construção da interface de usuário.
+- **Vite** – Ferramenta de build e desenvolvimento rápido para projetos frontend.
+- **Axios** – Cliente HTTP para requisições à API.
+- **API Node.js** – API de usuários disponível em: [natysls/usuarios-node-api](https://github.com/natysls/usuarios-node-api)
+
+
+## Como Executar
+
+1. Clone o repositório:
+    ```bash
+    git clone https://github.com/seu-usuario/cadastro-usuarios-web.git
+    ```
+2. Instale as dependências:
+    ```bash
+    cd cadastro-usuarios-web
+    npm install
+    ```
+3. Inicie a API de usuários:
+    ```bash
+    node --watch server.js
+    ```
+4. Inicie a aplicação:
+    ```bash
+    npm run dev
+    ```
+
+A aplicação estará disponível em `http://localhost:5173`, e estará consumindo a API Node.js de usuários na rota `http://localhost:3000`. Será esperada essa tela:
+
+![alt text](image.png)
+
+## 📺 Fonte da Aula
+Este projeto foi baseado na seguinte aula do Youtube:
+[Aprendendo React do Zero, Conectando Back e Front End, e Consumindo API](https://youtu.be/PyrMT0GA3sE?si=TFYwPy-aiu8kAaR8)

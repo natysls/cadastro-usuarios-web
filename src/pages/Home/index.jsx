@@ -1,20 +1,33 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./style.css";
 import Trash from "../../assets/trash.svg";
 import api from "../../services/api";
 
 // React Hooks
-// useEffect: Executa os métodos ao iniciar a tela
-// useState: Permite a atribuição de valores a variáveis e ser acessável no return
+// useEffect: Executa os métodos ao iniciar a tela.
+// useState: Permite declarar variáveis de estado que podem ser atualizadas e acessadas dentro do componente.
+// useRef: Permite criar referências mutáveis que podem ser acessadas diretamente, sem causar re-renderizações do componente.
 
 function Home() {
-  let [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([]);
+  const inputName = useRef(null);
+  const inputAge = useRef(null);
+  const inputEmail = useRef(null);
 
   async function getUsers() {
     const usersFromAPI = await api.get('/usuarios')
 
     setUsers(usersFromAPI.data);
-    console.log(users)
+  }
+
+  async function createUsers() {
+    await api.post('/usuarios', {
+      name: inputName.current.value,
+      age: inputAge.current.value,
+      email: inputEmail.current.value
+    });
+
+    getUsers();
   }
 
   useEffect(() => {
@@ -26,10 +39,10 @@ function Home() {
     <div className="container">
       <form>
         <h1> Cadastro de Usuários</h1>
-        <input placeholder="Nome" type="text" name="name" />
-        <input placeholder="Idade" type="number" name="age" />
-        <input placeholder="E-mail" type="text" name="email" />
-        <button type="button">Cadastrar</button>
+        <input placeholder="Nome" type="text" name="name" ref={inputName}/>
+        <input placeholder="Idade" type="number" name="age" ref={inputAge}/>
+        <input placeholder="E-mail" type="text" name="email" ref={inputEmail}/>
+        <button type="button" onClick={createUsers}>Cadastrar</button>
       </form>
 
       {users.map((user) => (

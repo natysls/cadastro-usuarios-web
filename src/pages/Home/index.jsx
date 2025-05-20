@@ -1,27 +1,26 @@
+import { useEffect, useState } from "react";
 import "./style.css";
 import Trash from "../../assets/trash.svg";
+import api from "../../services/api";
+
+// React Hooks
+// useEffect: Executa os métodos ao iniciar a tela
+// useState: Permite a atribuição de valores a variáveis e ser acessável no return
 
 function Home() {
-  const users = [
-    {
-      id: "asddsf",
-      name: "Natália",
-      age: 26,
-      email: "naty@hotmail.com",
-    },
-    {
-      id: "dfgcfb",
-      name: "Alex",
-      age: 27,
-      email: "alex@hotmail.com",
-    },
-    {
-      id: "dfgomjpomkjc",
-      name: "Artur",
-      age: 22,
-      email: "artur@hotmail.com",
-    },
-  ];
+  let [users, setUsers] = useState([]);
+
+  async function getUsers() {
+    const usersFromAPI = await api.get('/usuarios')
+
+    setUsers(usersFromAPI.data);
+    console.log(users)
+  }
+
+  useEffect(() => {
+    getUsers()
+  }
+  , []);
 
   return (
     <div className="container">
@@ -33,7 +32,6 @@ function Home() {
         <button type="button">Cadastrar</button>
       </form>
 
-      <h2>Usuário Cadastrado</h2>
       {users.map((user) => (
         <div key={user.id} className="card">
           <div>

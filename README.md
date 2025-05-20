@@ -38,7 +38,7 @@ Este projeto é uma aplicação web para cadastro e gerenciamento de usuários, 
 
 A aplicação estará disponível em `http://localhost:5173`, e estará consumindo a API Node.js de usuários na rota `http://localhost:3000`. Será esperada essa tela:
 
-![alt text](image.png)
+![alt text](/src/assets/image.png)
 
 ## 📺 Fonte da Aula
 Este projeto foi baseado na seguinte aula do Youtube:

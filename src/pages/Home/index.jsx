@@ -20,7 +20,7 @@ function Home() {
     setUsers(usersFromAPI.data);
   }
 
-  async function createUsers() {
+  async function createUser() {
     await api.post('/usuarios', {
       name: inputName.current.value,
       age: inputAge.current.value,
@@ -28,6 +28,12 @@ function Home() {
     });
 
     getUsers();
+  }
+
+  async function deleteUser(id) {
+    await api.delete(`/usuarios/${id}`);
+
+    getUsers()
   }
 
   useEffect(() => {
@@ -42,7 +48,7 @@ function Home() {
         <input placeholder="Nome" type="text" name="name" ref={inputName}/>
         <input placeholder="Idade" type="number" name="age" ref={inputAge}/>
         <input placeholder="E-mail" type="text" name="email" ref={inputEmail}/>
-        <button type="button" onClick={createUsers}>Cadastrar</button>
+        <button type="button" onClick={createUser} title="Cadastrar">Cadastrar</button>
       </form>
 
       {users.map((user) => (
@@ -52,7 +58,7 @@ function Home() {
             <p>Idade: <span>{user.age}</span></p>
             <p>Email: <span>{user.email}</span></p>
           </div>
-          <button>
+          <button onClick={() => deleteUser(user.id)} title="Deletar">
             <img src={Trash} alt="" />
           </button>
         </div>
